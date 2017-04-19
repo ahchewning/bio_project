@@ -20,7 +20,7 @@ Experience
 >**2011-2013** NCAA Division I Diver  
 >*University of Kentucky*
 >
->**2013** Creative Sports Media Intern  
+>**2013** Creative Sports Video Intern  
 >*University of Kentucky Athletic Department*
 >
 >**2013** Craft Cordinator and English Tutor  
