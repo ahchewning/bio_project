@@ -25,7 +25,7 @@ import sys
 genome = sys.argv[1]
 gff    = sys.argv[2]
 
-#function to clean up a DNA sequence
+#Writing functions to clean up a DNA sequence
 def clean_seq(input_seq):
 	clean = input_seq.upper()
 	clean = clean.replace('N','')
@@ -44,6 +44,27 @@ def nuc_freq(sequence, base, sig_digs=2):
 	
 	#return the frequency and the length
 	return (length, round(freq_of_base, sig_digs))
+	
+#make a dictionary key = feature type, value= concatenation of all sequences of type
+#not usefule for anything but GC content
+feature_sequences = {}
+
+#from here you need to identify certain features with the aproprieat column
+
+#id and strip the column you are interested in
+
+#id and strip the column that tells you if the code is forward or reverse
+
+#write and if loop to reverse strands 
+
+#strip the name of the sequence
+
+#print the name with a line break and then apend the sequence of intrest to an fsa file 
+
+#out put each to their own fsa file
+
+#store in a dictionary 
+
 
 
 #declare the the file (one is a sequence and one is a gff) 
@@ -114,24 +135,39 @@ for line in gff_in:
     #still in your loop declare that fragments are between the start and end
     #this must be an integer (see above)
     fragment = genome[start-1:stop]
+    fragment = clearn_seq(fragment)
+    
+    if type in feature_sequence:
+    	freature_sequences[type] += fragment
+    else:
+    	feature_sequence[type] =frament
+    
+gff_in.close()
 
-    if type == 'CDS':
-        cds += fragment
+for feature, sequence in feature_sequnces.items():
+	print(feature + "\t" + len(sequence))
 
-    elif type == 'intron':
-        intron += fragment
+#call your function to calculate the G + C
+    
+    
 
-    elif type == 'misc_feature':
-        misc += fragment
+    #if type == 'CDS':
+        #cds += fragment
 
-    elif type == 'repeat_region':
-        repeats += fragment
+    #elif type == 'intron':
+        #intron += fragment
 
-    elif type == 'rRNA':
-        rrna += fragment
+    #elif type == 'misc_feature':
+       # misc += fragment
 
-    elif type == 'tRNA':
-        trna += fragment
+    #elif type == 'repeat_region':
+        #repeats += fragment
+
+    #elif type == 'rRNA':
+        #rrna += fragment
+
+    #elif type == 'tRNA':
+        #trna += fragment
         	
 	
 #calculate the nucleotide composition of each feature
@@ -156,33 +192,13 @@ for feature_type in [cds, intron, misc, repeats, rrna, trna]:
 # close the GFF file
 gff_in.close()
 
+#if on the _ use revers compliment and returen reverse compliment as fragment
+#capture the gene name (the exon disagreement)
+#fasta charate fasta header and then gene sequence
+#parse 
+we want the coding sequence for nad put together with out the intron
+#read last plse 
 
 
-#Before class
-#check the length of the DNA sequence
-#sequence = my_nts.read()
-#sequence_length = (len(sequence))
-#print (sequence_length)
 
-#Calculate the G-C content in the entire sequence
-#G_count = sequence.count('G')
-#C_count = sequence.count('C')
-#GC_content = G_count + C_count
-#percent_GC = GC_content/ len(sequence)
-
-#Declare a list for the sequence
-#nt_bases = []
-
-#read each line of the fsa file into the list you just made
-#for line in sequence:
-	#line = line.strip('\n')
-	#nt_bases.append(line)
-
-#count the number of start codons in the sequence
-
-#isolate feature types. These are reported in field 3 of a gff. 
-
-#close the files
-#my_nts.close()
-#my_genfeat.close()
 
