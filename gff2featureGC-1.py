@@ -45,25 +45,24 @@ def nuc_freq(sequence, base, sig_digs=2):
 	#return the frequency and the length
 	return (length, round(freq_of_base, sig_digs))
 	
-#make a dictionary key = feature type, value= concatenation of all sequences of type
+#make a dictionary key = gene name, value= another dictionary [key=exon number value= exon sequence]
+#gene_sequence{cox1][1] = 'the sequence or the first exon of cox1'
+#gene_sequence{cox1][2] = 'the sequence or the second exon of cox1'
 #not usefule for anything but GC content
-feature_sequences = {}
+gene_sequences = {}
 
-#from here you need to identify certain features with the aproprieat column
 
-#id and strip the column you are interested in
 
-#id and strip the column that tells you if the code is forward or reverse
+#get the gene name
+#get the exon number(order is determined by the number in atributes feild
+#make a dictionary 
+genes
+feature name
+	key= gene neme
+	value = sequence ['Exon number', v=seg]
+	
+exons, key =genename + Exon#
 
-#write and if loop to reverse strands 
-
-#strip the name of the sequence
-
-#print the name with a line break and then apend the sequence of intrest to an fsa file 
-
-#out put each to their own fsa file
-
-#store in a dictionary 
 
 
 
@@ -129,18 +128,45 @@ for line in gff_in:
     #declare that column 5 holds the end site
     stop = int(fields[4])
     
+    if (type == 'CDS'):   
+    	#get the gene name
+    	#print(fields[8])
+   		attributes = fields[8].split(' ; ')
+		#print(attrinutes[0])
+    	gene_fields = atributes[0].slpit(' ')
+    	gene_name = gene_fields[1])
+    	#get the exon number
+    	
+    	if( 'exon' in gene_fields ):
+    		exon_num =gene_fields[-1]
+    		#exon_num = gene_feilds[3]
+    		print("has exons: " + attriutes[0])
+    		print(gene_name, exon_num)
+    	#else:
+    		#print ("Doesn't have exons: " + attributes[0])
+    		
+    		
     # print(type, "\t", start, "\t", end)
     
-    # extract each feature from the genome remember: genome base it is 1 and python base is 0
+    #extract each feature from the genome remember: genome base it is 1 and python base is 0
     #still in your loop declare that fragments are between the start and end
     #this must be an integer (see above)
     fragment = genome[start-1:stop]
-    fragment = clearn_seq(fragment)
+    fragment = clean_seq(fragment)
     
     if type in feature_sequence:
     	freature_sequences[type] += fragment
     else:
-    	feature_sequence[type] =frament
+    	feature_sequence[type] =fragment
+    	
+    #determine the strand and rever complement or nah
+    if(fields[6] =='-'):
+    	fragment =reverse_comlement(fragment)
+    
+    	
+    #store this sequence in the gene_sequence hash
+    #do a has of hashes and try your best 
+    
     
 gff_in.close()
 
